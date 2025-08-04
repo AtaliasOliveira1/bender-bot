@@ -56,12 +56,12 @@ exports.dynamicCommand = async (paramsHandler, startProcess) => {
     if (!userJid) {
       return;
     }
-
+    //ANTI LINK - @ataliasloami
     if (!(await isAdmin({ remoteJid, userJid, socket }))) {
-      await socket.groupParticipantsUpdate(remoteJid, [userJid], "remove");
+      //await socket.groupParticipantsUpdate(remoteJid, [userJid], "remove");
 
       await sendReply(
-        "Anti-link ativado! Você foi removido por enviar um link!"
+        "Sua mensagem foi apagada por enviar um link!"
       );
 
       await socket.sendMessage(remoteJid, {
