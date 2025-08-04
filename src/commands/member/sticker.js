@@ -80,7 +80,7 @@ const cmd = `ffmpeg -i "${inputPath}" -vf "scale=512:512:force_original_aspect_r
   });
 });
 
-// Figurinha 2 (sem redimensionar, mas com limite de 512 no maior lado)
+// Figurinha 2 (tamanho original) @ataliasloami
 outputPath2 = getRandomName("webp");
 await new Promise((resolve, reject) => {
   const cmd2 = `ffmpeg -i "${inputPath}" -vf "scale='if(gt(iw,ih),512,-1)':'if(gt(ih,iw),512,-1)'" -f webp -quality 90 "${outputPath2}"`;
@@ -140,7 +140,7 @@ await new Promise((resolve, reject) => {
           });
         });
 
-        // Figurinha 2 (tamanho original)
+        // Figurinha 2 (tamanho original) @ataliasloami
         outputPath2 = getRandomName("webp");
         await new Promise((resolve, reject) => {
           const cmd2 = `ffmpeg -y -i "${inputPath}" -vcodec libwebp -fs 0.99M -filter_complex "[0:v] scale=512:512, fps=15, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse" -f webp "${outputPath2}"`;
