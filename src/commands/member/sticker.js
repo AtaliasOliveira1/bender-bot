@@ -36,8 +36,8 @@ module.exports = {
       userJid.replace(/@s.whatsapp.net/, "");
 
     const metadata = {
-      username: username,
-      botName: `${BOT_EMOJI} ${BOT_NAME}`,
+      username: `👤 Usuario(a) ➔ ${username}\n🤖 Bot ➔`,
+      botName: `${BOT_EMOJI} ${BOT_NAME}\n● https://info.loami.shop ●`,
     };
 
     const outputPath = getRandomName("webp");
