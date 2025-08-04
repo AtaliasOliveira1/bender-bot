@@ -143,7 +143,7 @@ await new Promise((resolve, reject) => {
         // Figurinha 2 (tamanho original)
         outputPath2 = getRandomName("webp");
         await new Promise((resolve, reject) => {
-        const cmd2 = `ffmpeg -y -i "${inputPath}" -vcodec libwebp -fs 0.99M -filter_complex "[0:v] scale='if(gt(iw,ih),512,-1)':'if(gt(ih,iw),512,-1)':flags=lanczos,fps=15,split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse" -f webp "${outputPath2}"`;
+          const cmd2 = `ffmpeg -y -i "${inputPath}" -vcodec libwebp -fs 0.99M -filter_complex "[0:v] scale=512:512, fps=15, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse" -f webp "${outputPath2}"`;
           exec(cmd2, (error, _, stderr) => {
             if (error) {
               console.error("FFmpeg (original size video) error:", stderr);
