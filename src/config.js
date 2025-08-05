@@ -4,7 +4,7 @@ const path = require("path");
 exports.PREFIX = "!";
 
 // Emoji do bot (mude se preferir).
-exports.BOT_EMOJI = "🤖";
+exports.BOT_EMOJI = "☢️";
 
 // Nome do bot (mude se preferir).
 exports.BOT_NAME = "Bender-bot";
@@ -12,7 +12,7 @@ exports.BOT_NAME = "Bender-bot";
 // Número do bot.
 // Apenas números, exatamente como está no WhatsApp.
 // Se o seu número não exibir o nono dígito (9) no WhatsApp, não coloque-o.
-exports.BOT_NUMBER = "559985011115";
+exports.BOT_NUMBER = "554531981832";
 
 // Número do dono bot.
 // Apenas números, exatamente como está no WhatsApp.
@@ -53,7 +53,7 @@ exports.ONLY_GROUP_ID = "";
 // Configuração para modo de desenvolvimento
 // mude o valor para ( true ) sem os parênteses
 // caso queira ver os logs de mensagens recebidas
-exports.DEVELOPER_MODE = false;
+exports.DEVELOPER_MODE = true;
 
 // Diretório base do projeto.
 exports.BASE_DIR = path.resolve(__dirname);
