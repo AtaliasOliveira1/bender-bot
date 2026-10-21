@@ -72,6 +72,7 @@ export function menuMessage(groupJid) {
 ▢ • ${prefix}set-proxy
 ▢ • ${prefix}unmute
 ▢ • ${prefix}welcome (1/0)
+▢ • ${prefix}live-alert (on/off)
 ▢
 ╰━━─「⭐」─━━
 

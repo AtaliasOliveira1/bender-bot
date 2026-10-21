@@ -10,6 +10,8 @@ import { onCall } from "./middlewares/onCall.js";
 import { onMessagesUpsert } from "./middlewares/onMesssagesUpsert.js";
 import { badMacHandler } from "./utils/badMacHandler.js";
 import { errorLog } from "./utils/logger.js";
+import { WEBHOOK_ENABLED } from "./config.js";
+import { startWebhookServer } from "./services/webhook-server.js";
 
 export function load(socket) {
   const safeEventHandler = async (callback, data, eventName) => {
@@ -63,4 +65,9 @@ export function load(socket) {
     }
     errorLog(`Promessa rejeitada não tratada: ${reason}`);
   });
+
+  // Inicia o servidor webhook se estiver habilitado
+  if (WEBHOOK_ENABLED) {
+    startWebhookServer(socket);
+  }
 }

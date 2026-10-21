@@ -66,3 +66,7 @@ export const DEVELOPER_MODE = false;
 
 // Chave da OpenAI para o comando de suporte
 export const OPENAI_API_KEY = "";
+
+// Configuração do servidor Express para webhooks
+export const WEBHOOK_PORT = 3555;
+export const WEBHOOK_ENABLED = true;

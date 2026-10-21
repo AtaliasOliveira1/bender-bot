@@ -23,6 +23,7 @@ const CONFIG_FILE = "config";
 const EXIT_GROUPS_FILE = "exit-groups";
 const GROUP_RESTRICTIONS_FILE = "group-restrictions";
 const INACTIVE_GROUPS_FILE = "inactive-groups";
+const LIVE_ALERT_GROUPS_FILE = "live-alert-groups";
 const MUTE_FILE = "muted";
 const ONLY_ADMINS_FILE = "only-admins";
 const PREFIX_GROUPS_FILE = "prefix-groups";
@@ -536,4 +537,46 @@ export function getSpiderApiToken() {
   const config = readJSON(filename, {});
 
   return config.spider_api_token || SPIDER_API_TOKEN;
+}
+
+export function addLiveAlertGroup(groupId) {
+  const filename = LIVE_ALERT_GROUPS_FILE;
+
+  const liveAlertGroups = readJSON(filename, []);
+
+  if (!liveAlertGroups.includes(groupId)) {
+    liveAlertGroups.push(groupId);
+  }
+
+  writeJSON(filename, liveAlertGroups);
+}
+
+export function removeLiveAlertGroup(groupId) {
+  const filename = LIVE_ALERT_GROUPS_FILE;
+
+  const liveAlertGroups = readJSON(filename, []);
+
+  const index = liveAlertGroups.indexOf(groupId);
+
+  if (index === -1) {
+    return;
+  }
+
+  liveAlertGroups.splice(index, 1);
+
+  writeJSON(filename, liveAlertGroups);
+}
+
+export function getLiveAlertGroups() {
+  const filename = LIVE_ALERT_GROUPS_FILE;
+
+  return readJSON(filename, []);
+}
+
+export function isActiveLiveAlertGroup(groupId) {
+  const filename = LIVE_ALERT_GROUPS_FILE;
+
+  const liveAlertGroups = readJSON(filename, []);
+
+  return liveAlertGroups.includes(groupId);
 }
