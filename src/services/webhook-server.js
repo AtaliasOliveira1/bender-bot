@@ -77,7 +77,7 @@ export function startWebhookServer(socket) {
     res.json({ status: "ok", service: "Bender Bot Webhook" });
   });
 
-  const PORT = process.env.WEBHOOK_PORT || 3000;
+  const PORT = process.env.WEBHOOK_PORT || 3555;
   server = app.listen(PORT, () => {
     successLog(`Servidor webhook rodando na porta ${PORT}`);
     infoLog(`Endpoints disponíveis:`);
