@@ -116,8 +116,31 @@ get_version() {
 check_remote() {
     if ! git remote get-url origin > /dev/null 2>&1; then
         print_color $RED "❌ Erro: Remote 'origin' não configurado!"
-        print_color $YELLOW "💡 Configure o remote com: git remote add origin <URL_DO_REPOSITORIO>"
-        exit 1
+        print_color $YELLOW "💡 Configurando remote para o repositório privado..."
+        git remote add origin https://github.com/AtaliasOliveira1/bender-bot.git
+        print_color $GREEN "✅ Remote configurado para: https://github.com/AtaliasOliveira1/bender-bot.git"
+    else
+        local current_remote=$(git remote get-url origin)
+        if [[ "$current_remote" != "https://github.com/AtaliasOliveira1/bender-bot.git" ]]; then
+            print_color $YELLOW "⚠️  Remote atual: $current_remote"
+            print_color $YELLOW "💡 Atualizando para o repositório privado..."
+            git remote set-url origin https://github.com/AtaliasOliveira1/bender-bot.git
+            print_color $GREEN "✅ Remote atualizado para: https://github.com/AtaliasOliveira1/bender-bot.git"
+        fi
+    fi
+    
+    # Configurar autenticação com a chave fornecida
+    print_color $BLUE "🔑 Configurando autenticação..."
+    
+    # Criar arquivo de configuração SSH temporário se não existir
+    if [ ! -f ~/.ssh/id_rsa ]; then
+        print_color $YELLOW "⚠️  Chave SSH não encontrada em ~/.ssh/id_rsa"
+        print_color $YELLOW "💡 Usando autenticação via credential helper"
+        git config --global credential.helper store
+        echo "https://6d74a94b31f1f637ec5da10d2c6047f6cc9dea6a@github.com" > ~/.git-credentials
+        print_color $GREEN "✅ Credenciais configuradas"
+    else
+        print_color $GREEN "✅ Usando chave SSH existente"
     fi
 }
 
@@ -140,7 +163,7 @@ create_backup() {
 }
 
 show_file_differences() {
-    print_color $BLUE "🔍 Verificando diferenças entre seu bot e o oficial..."
+    print_color $BLUE "🔍 Verificando diferenças entre seu bot e o repositório privado..."
     
     git fetch origin
     
@@ -172,7 +195,7 @@ show_file_differences() {
     
     local deleted_files=$(git diff --name-only HEAD..$remote_branch --diff-filter=D)
     if [ ! -z "$deleted_files" ]; then
-        print_color $RED "🗑️ Arquivos que foram REMOVIDOS no bot oficial:"
+        print_color $RED "🗑️ Arquivos que foram REMOVIDOS no repositório privado:"
         echo "$deleted_files" | while read file; do
             print_color $RED "  - $file"
         done
@@ -340,8 +363,9 @@ main() {
     local local_version=$(get_version "package.json")
     
     git fetch origin 2>/dev/null || {
-        print_color $RED "❌ Erro ao conectar com o repositório oficial!"
+        print_color $RED "❌ Erro ao conectar com o repositório privado!"
         print_color $YELLOW "💡 Verifique sua conexão de internet e as permissões do repositório."
+        print_color $YELLOW "💡 Verifique se a chave de autenticação está correta."
         exit 1
     }
     
@@ -364,7 +388,7 @@ main() {
     fi
     
     print_color $([ "$local_version" = "$remote_version" ] && echo $GREEN || echo $RED) "  📦 Sua versão:     $local_version"
-    print_color $GREEN "  🌐 Versão oficial: $remote_version"
+    print_color $GREEN "  🌐 Versão do repositório: $remote_version"
     echo
     
     if ! git diff-index --quiet HEAD --; then
