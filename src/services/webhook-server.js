@@ -37,7 +37,8 @@ export function startWebhookServer(socket) {
         });
       }
 
-      const mensagem = `🚨 *Alerta de Live!*\n\nO criador *${username}* acabou de iniciar a transmissão!\n📝 ${title}`;
+      //const mensagem = `🚨 *Alerta de Live!*\n\nO criador *${username}* acabou de iniciar a transmissão!\n📝 ${title}`;
+      const mensagem = `🔴 *AO VIVO NO TIKTOK!*\n\n👤 *Perfil:* ${username}\n📌 *Título:* ${title}\n\nCorre lá para assistir! 🚀`;
 
       let successCount = 0;
       let errorCount = 0;
