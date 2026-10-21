@@ -60,8 +60,5 @@ export function warningLog(message) {
 }
 
 export function bannerLog() {
-  console.log(`\x1b[36m░▀█▀░█▀█░█░█░█▀▀░█▀▀░█░█░▀█▀░░█▀▄░█▀█░▀█▀\x1b[0m`);
-  console.log(`░░█░░█▀█░█▀▄░█▀▀░▀▀█░█▀█░░█░░░█▀▄░█░█░░█░`);
-  console.log(`\x1b[36m░░▀░░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░░▀▀░░▀▀▀░░▀░\x1b[0m`);
-  console.log(`\x1b[36m🤖 Versão: \x1b[0m${pkg.version}\n`);
+  console.log(`\x1b[36m🤖 Bender Bot - Versão: \x1b[0m${pkg.version}\n`);
 }

@@ -1,6 +1,6 @@
 {
   "name": "bender-bot",
-  "version": "8.11.0",
+  "version": "1.0.0",
   "description": "Um bot de WhatsApp multifunções.",
   "main": "index.js",
   "type": "module",
