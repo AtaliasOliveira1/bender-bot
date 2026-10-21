@@ -19,8 +19,9 @@ WORKDIR /app
 # Cria diretórios necessários
 RUN mkdir -p database assets/auth/baileys assets/images assets/temp
 
-# Copia arquivos de configuração
+# Copia arquivos de configuração e scripts necessários
 COPY package*.json ./
+COPY scripts/ ./scripts/
 
 # Instala dependências
 RUN npm ci --only=production && npm cache clean --force
