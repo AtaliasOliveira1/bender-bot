@@ -5,7 +5,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Prefixo padrão dos comandos.
-export const PREFIX = "/";
+export const PREFIX = "!";
 
 // Emoji do bot (mude se preferir).
 export const BOT_EMOJI = "🤖";
@@ -16,12 +16,12 @@ export const BOT_NAME = "Bender Bot";
 // LID do bot (no caso, o que você rodará o bot).
 // Para obter o LID do bot, use o comando <prefixo>lid respondendo em cima de uma mensagem do número do bot
 // Troque o <prefixo> pelo prefixo do bot (ex: /lid).
-export const BOT_LID = "12345678901234567890@lid";
+export const BOT_LID = "237778482786517@lid";
 
 // LID do dono do bot (no caso, o seu!).
 // Para obter o LID do dono do bot, use o comando <prefixo>meu-lid
 // Troque o <prefixo> pelo prefixo do bot (ex: /meu-lid).
-export const OWNER_LID = "12345678901234567890@lid";
+export const OWNER_LID = "82235738820857@lid";
 
 // Diretório dos comandos
 export const COMMANDS_DIR = path.join(__dirname, "commands");
@@ -62,7 +62,7 @@ export const ONLY_GROUP_ID = "";
 // Configuração para modo de desenvolvimento
 // mude o valor para ( true ) sem os parênteses
 // caso queira ver os logs de mensagens recebidas
-export const DEVELOPER_MODE = false;
+export const DEVELOPER_MODE = true;
 
 // Chave da OpenAI para o comando de suporte
 export const OPENAI_API_KEY = "";
