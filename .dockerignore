@@ -47,9 +47,6 @@ docs/
 # Diagramas
 diagrams/
 
-# Scripts de desenvolvimento
-scripts/patch-baileys.mjs
-
 # Testes
 src/test/
 test/
