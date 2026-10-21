@@ -18,10 +18,22 @@ export async function addStickerMetadata(media, metadata) {
 
   const img = new webp.Image();
 
+  const formattedDate = metadata.creationDate 
+    ? new Date(metadata.creationDate).toLocaleDateString('pt-BR')
+    : new Date().toLocaleDateString('pt-BR');
+
+  const packName = metadata.groupName
+    ? `👤 ${metadata.username} 📅 ${formattedDate}`
+    : `👤 ${metadata.username} 📅 ${formattedDate}`;
+
+  const publisher = metadata.groupName
+    ? `🤖 ${metadata.botName} 👥 ${metadata.groupName}`
+    : `🤖 ${metadata.botName}`;
+
   const json = {
     "sticker-pack-id": `${getRandomNumber(10_000, 99_999)}`,
-    "sticker-pack-name": metadata.username,
-    "sticker-pack-publisher": metadata.botName,
+    "sticker-pack-name": packName,
+    "sticker-pack-publisher": publisher,
     emojis: metadata.categories ? metadata.categories : [""],
   };
 
@@ -91,10 +103,22 @@ export async function processAnimatedSticker(inputPath, metadata) {
     const img = new webp.Image();
     await img.load(inputPath);
 
+    const formattedDate = metadata.creationDate 
+      ? new Date(metadata.creationDate).toLocaleDateString('pt-BR')
+      : new Date().toLocaleDateString('pt-BR');
+
+    const packName = metadata.groupName
+      ? `👤 ${metadata.username} 📅 ${formattedDate}`
+      : `👤 ${metadata.username} 📅 ${formattedDate}`;
+
+    const publisher = metadata.groupName
+      ? `🤖 ${metadata.botName} 👥 ${metadata.groupName}`
+      : `🤖 ${metadata.botName}`;
+
     const json = {
       "sticker-pack-id": `${getRandomNumber(10_000, 99_999)}`,
-      "sticker-pack-name": metadata.username,
-      "sticker-pack-publisher": metadata.botName,
+      "sticker-pack-name": packName,
+      "sticker-pack-publisher": publisher,
       emojis: metadata.categories ? metadata.categories : [""],
     };
 
@@ -160,11 +184,17 @@ export async function createSticker(paramsHandler) {
     webMessage,
     sendStickerFromFile,
     userLid,
+    isGroup,
+    getGroupName,
   } = paramsHandler;
+
+  const groupName = isGroup ? await getGroupName() : null;
 
   const metadata = {
     username: getUserName(webMessage, userLid),
     botName: `${BOT_EMOJI} ${BOT_NAME}`,
+    groupName: groupName,
+    creationDate: Date.now(),
   };
 
   const outputTempPath = path.resolve(TEMP_DIR, getRandomName("webp"));
