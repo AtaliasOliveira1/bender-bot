@@ -19,7 +19,7 @@ export function startWebhookServer(socket) {
   // Rota para alerta de live
   app.post("/enviar-alerta-live", async (req, res) => {
     try {
-      const { title, description, username } = req.body;
+      const { title, description, username, avatar_url, live_url } = req.body;
 
       if (!title || !username) {
         return res.status(400).json({
@@ -38,7 +38,7 @@ export function startWebhookServer(socket) {
       }
 
       //const mensagem = `🚨 *Alerta de Live!*\n\nO criador *${username}* acabou de iniciar a transmissão!\n📝 ${title}`;
-      const mensagem = `🔴 *AO VIVO NO TIKTOK!*\n\n👤 *Perfil:* ${username}\n📌 *Título:* ${title}\n\nCorre lá para assistir! 🚀`;
+      const mensagem = `🔴 *AO VIVO NO TIKTOK!*\n\n👤 *Perfil:* ${username}\n📌 *Link:* ${live_url}\n\nCorre lá para assistir! 🚀`;
 
       let successCount = 0;
       let errorCount = 0;
