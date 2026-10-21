@@ -72,6 +72,6 @@ await socket.sendMessage(remoteJid, {
 • Você pode adicionar quantos cards quiser
 • \`viewOnce: true\` é obrigatório
 • Cada card precisa de \`title\`, \`image\` e \`caption\`
-⚠️ Importante: a baileys do Takeshi foi modificada para suportar mensagens em carrossel!`);
+⚠️ Importante: a baileys do Bender foi modificada para suportar mensagens em carrossel!`);
   },
 };

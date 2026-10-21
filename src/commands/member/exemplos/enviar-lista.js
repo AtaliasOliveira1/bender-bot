@@ -106,6 +106,6 @@ await socket.sendMessage(remoteJid, {
 • \`useLegacyList: true\` força o formato antigo \`listMessage\`
 • Cada seção pode ter várias linhas
 • Use \`rowId\` para identificar a opção escolhida
-⚠️ Importante: a baileys do Takeshi foi modificada para suportar listas!`);
+⚠️ Importante: a baileys do Bender foi modificada para suportar listas!`);
   },
 };

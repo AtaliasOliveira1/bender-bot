@@ -28,7 +28,7 @@ detect_environment() {
 ENV_TYPE=$(detect_environment)
 
 if [ "$ENV_TYPE" = "termux" ]; then
-    TEMP_DIR="$HOME/.cache/takeshi-bot-update"
+    TEMP_DIR="$HOME/.cache/bender-bot-update"
     mkdir -p "$TEMP_DIR"
 else
     TEMP_DIR="/tmp"
@@ -313,7 +313,7 @@ cleanup() {
 }
 
 main() {
-    print_header "🤖 SCRIPT DE ATUALIZAÇÃO TAKESHI BOT"
+    print_header "🤖 SCRIPT DE ATUALIZAÇÃO BENDER BOT"
     
     case $ENV_TYPE in
         termux)

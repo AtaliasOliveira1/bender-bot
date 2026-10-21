@@ -111,7 +111,7 @@ function buildRichResponse(submessages) {
     submessages,
     unifiedResponse: {
       data: encodeUnifiedResponseData({
-        response_id: `takeshi-reels-${Date.now()}-${randomBytes(6).toString("hex")}`,
+        response_id: `bender-reels-${Date.now()}-${randomBytes(6).toString("hex")}`,
         sections: submessages.map(buildUnifiedSection).filter(Boolean),
       }),
     },
@@ -223,7 +223,7 @@ function buildBotMetadata(sources = [], extraCapabilities = []) {
       premiumModelStatus: "AVAILABLE",
     },
     botAgeCollectionMetadata: {},
-    botResponseId: `takeshi-reels-${Date.now()}-${randomBytes(6).toString("hex")}`,
+    botResponseId: `bender-reels-${Date.now()}-${randomBytes(6).toString("hex")}`,
     verificationMetadata: {
       proofs: [],
     },

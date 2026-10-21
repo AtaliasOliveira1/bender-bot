@@ -373,7 +373,7 @@ export function readMore() {
 }
 
 export function getRandomName(extension) {
-  const fileName = `takeshi_temp_${getRandomNumber(0, 999999)}`;
+  const fileName = `bender_temp_${getRandomNumber(0, 999999)}`;
 
   if (!extension) {
     return fileName.toString();

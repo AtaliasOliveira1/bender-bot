@@ -41,8 +41,8 @@ export default {
     await delay(3000);
 
     await sendImageFromFile(
-      path.join(ASSETS_DIR, "images", "takeshi-bot.png"),
-      "Logo do Takeshi Bot!"
+      path.join(ASSETS_DIR, "images", "bender-bot.png"),
+      "Logo do Bender Bot!"
     );
 
     await delay(3000);
@@ -52,8 +52,8 @@ export default {
     await delay(3000);
 
     await sendImageFromFile(
-      path.join(ASSETS_DIR, "images", "takeshi-bot.png"),
-      `Logo do Takeshi Bot para você @${userLid.split("@")[0]}!`,
+      path.join(ASSETS_DIR, "images", "bender-bot.png"),
+      `Logo do Bender Bot para você @${userLid.split("@")[0]}!`,
       [userLid]
     );
 

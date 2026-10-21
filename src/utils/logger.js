@@ -36,27 +36,27 @@ export function installConsoleNoiseFilter() {
 }
 
 export function sayLog(message) {
-  console.log("\x1b[36m[TAKESHI BOT | TALK]\x1b[0m", message);
+  console.log("\x1b[36m[BENDER BOT | TALK]\x1b[0m", message);
 }
 
 export function inputLog(message) {
-  console.log("\x1b[30m[TAKESHI BOT | INPUT]\x1b[0m", message);
+  console.log("\x1b[30m[BENDER BOT | INPUT]\x1b[0m", message);
 }
 
 export function infoLog(message) {
-  console.log("\x1b[34m[TAKESHI BOT | INFO]\x1b[0m", message);
+  console.log("\x1b[34m[BENDER BOT | INFO]\x1b[0m", message);
 }
 
 export function successLog(message) {
-  console.log("\x1b[32m[TAKESHI BOT | SUCCESS]\x1b[0m", message);
+  console.log("\x1b[32m[BENDER BOT | SUCCESS]\x1b[0m", message);
 }
 
 export function errorLog(message) {
-  console.log("\x1b[31m[TAKESHI BOT | ERROR]\x1b[0m", message);
+  console.log("\x1b[31m[BENDER BOT | ERROR]\x1b[0m", message);
 }
 
 export function warningLog(message) {
-  console.log("\x1b[33m[TAKESHI BOT | WARNING]\x1b[0m", message);
+  console.log("\x1b[33m[BENDER BOT | WARNING]\x1b[0m", message);
 }
 
 export function bannerLog() {

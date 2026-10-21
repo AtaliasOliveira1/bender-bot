@@ -19,7 +19,7 @@ export default {
     await sendSuccessReact();
 
     await sendImageFromFile(
-      path.join(ASSETS_DIR, "images", "takeshi-bot.png"),
+      path.join(ASSETS_DIR, "images", "bender-bot.png"),
       `\n\n${menuMessage(remoteJid)}`,
     );
   },
