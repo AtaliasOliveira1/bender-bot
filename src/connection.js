@@ -79,6 +79,28 @@ export async function connect() {
 
   const { version } = await fetchLatestBaileysVersion();
 
+  let useQR = false;
+
+  // Verifica se precisa autenticar
+  const authState = await useMultiFileAuthState(baileysFolder);
+  if (!authState.state.creds.registered) {
+    clearScreenWithBanner();
+    console.log("Escolha o método de autenticação:");
+    console.log("1 - QR Code (escaneie com o WhatsApp)");
+    console.log("2 - Código de Pareamento (adicione número ao WhatsApp)");
+
+    const choice = await question("Escolha (1 ou 2): ");
+
+    if (choice === "1") {
+      useQR = true;
+    } else if (choice === "2") {
+      useQR = false;
+    } else {
+      errorLog("Opção inválida! Encerrando...");
+      process.exit(1);
+    }
+  }
+
   const socket = makeWASocket({
     version,
     logger,
@@ -95,10 +117,13 @@ export async function connect() {
     emitOwnEvents: false,
     msgRetryCounterCache,
     shouldSyncHistoryMessage: () => false,
+    printQRInTerminal: useQR,
   });
 
-  if (!socket.authState.creds.registered) {
-    clearScreenWithBanner();
+  socket.ev.on("creds.update", saveCreds);
+
+  // Se escolheu código de pareamento, solicita o número
+  if (!socket.authState.creds.registered && !useQR) {
     console.log(
       'Informe o número do bot (SP/RJ exigem 9º dígito). \nExemplo: "+5511912345678", demais estados: "+554112345678":',
     );
@@ -207,8 +232,6 @@ O prefixo padrão definido no config.js é ${PREFIX}`,
       infoLog("Atualizando conexão...");
     }
   });
-
-  socket.ev.on("creds.update", saveCreds);
 
   return socket;
 }
