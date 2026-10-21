@@ -62,7 +62,7 @@ export const ONLY_GROUP_ID = "";
 // Configuração para modo de desenvolvimento
 // mude o valor para ( true ) sem os parênteses
 // caso queira ver os logs de mensagens recebidas
-export const DEVELOPER_MODE = true;
+export const DEVELOPER_MODE = false;
 
 // Chave da OpenAI para o comando de suporte
 export const OPENAI_API_KEY = "";
