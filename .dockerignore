@@ -1,0 +1,74 @@
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Arquivos de banco de dados (persistência externa)
+database/*.json
+!database/auto-responder.json
+
+# Arquivos de autenticação (persistência externa)
+assets/auth/
+
+# Arquivos temporários
+assets/temp/
+*.tmp
+*.temp
+
+# Logs
+assets/temp/wa-logs.txt
+*.log
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Documentação
+README.md
+CONTRIBUTING.md
+AGENTS.md
+WEBHOOK-GUIDE.md
+docs/
+*.md
+
+# Diagramas
+diagrams/
+
+# Scripts de desenvolvimento
+scripts/patch-baileys.mjs
+
+# Testes
+src/test/
+test/
+*.test.js
+*.spec.js
+
+# Arquivos de exemplo
+⚡-cases-estao-aqui.js
+.env.example
+
+# Arquivos de imagem do menu (pode ser opcional)
+assets/images/samples/
+
+# Certificados e chaves
+*.pem
+*.key
+*.crt
+*.cert
+
+# Arquivos do sistema
+Thumbs.db
+.DS_Store
