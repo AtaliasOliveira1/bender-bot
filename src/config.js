@@ -42,7 +42,7 @@ export const TIMEOUT_IN_MILLISECONDS_BY_EVENT = 500;
 export const SPIDER_API_BASE_URL = "https://api.spiderx.com.br/api";
 
 // Obtenha seu token, criando uma conta em: https://api.spiderx.com.br.
-export const SPIDER_API_TOKEN = "seu_token_aqui";
+export const SPIDER_API_TOKEN = "vOrBar5xRxXcuT8sF0kd";
 
 // Plataforma recomendada para o comando gerar-link.
 // Com chave propria do Linker, os links seguem a duracao do plano Linker.

@@ -6,14 +6,12 @@
 import pkg from "../package.json" with { type: "json" };
 import { BOT_NAME } from "./config.js";
 import { getPrefix } from "./utils/database.js";
-import { readMore } from "./utils/index.js";
 
 export function menuMessage(groupJid) {
   const date = new Date();
-
   const prefix = getPrefix(groupJid);
 
-  return `╭━━⪩ BEM VINDO! ⪨━━${readMore()}
+  return `╭━━⪩ BEM VINDO! ⪨━━
 ▢
 ▢ • ${BOT_NAME}
 ▢ • Data: ${date.toLocaleDateString("pt-br")}
@@ -23,136 +21,164 @@ export function menuMessage(groupJid) {
 ▢
 ╰━━─「🪐」─━━
 
-╭━━⪩ DONO ⪨━━
+╭━━⪩ CATEGORIAS ⪨━━
 ▢
-▢ • ${prefix}exec
-▢ • ${prefix}get-group-id
-▢ • ${prefix}off
-▢ • ${prefix}on
-▢ • ${prefix}set-menu-image
-▢ • ${prefix}set-prefix
-▢ • ${prefix}set-spider-api-token
-▢ • ${prefix}status
+📋 • ${prefix}menu
+👑 • ${prefix}menudono
+⭐ • ${prefix}menuadm
+📥 • ${prefix}menudownloads
 ▢
 ╰━━─「🌌」─━━
 
-╭━━⪩ ADMINS ⪨━━
-▢
-▢ • ${prefix}abrir
-▢ • ${prefix}add-auto-responder
-▢ • ${prefix}agendar-mensagem
-▢ • ${prefix}anti-audio (1/0)
-▢ • ${prefix}anti-call (1/0)
-▢ • ${prefix}anti-document (1/0)
-▢ • ${prefix}anti-event (1/0)
-▢ • ${prefix}anti-image (1/0)
-▢ • ${prefix}anti-link (1/0)
-▢ • ${prefix}anti-lottie-sticker (1/0)
-▢ • ${prefix}anti-payment (1/0)
-▢ • ${prefix}anti-product (1/0)
-▢ • ${prefix}anti-sticker (1/0)
-▢ • ${prefix}anti-status-grupo (1/0)
-▢ • ${prefix}anti-video (1/0)
-▢ • ${prefix}auto-responder (1/0)
-▢ • ${prefix}auto-sticker (1/0)
-▢ • ${prefix}ban
-▢ • ${prefix}delete
-▢ • ${prefix}delete-auto-responder
-▢ • ${prefix}exit (1/0)
-▢ • ${prefix}fechar
-▢ • ${prefix}hidetag
-▢ • ${prefix}limpar-chat
-▢ • ${prefix}link-grupo
-▢ • ${prefix}list-auto-responder
-▢ • ${prefix}mute
-▢ • ${prefix}only-admin (1/0)
-▢ • ${prefix}promover
-▢ • ${prefix}rebaixar
-▢ • ${prefix}revelar
-▢ • ${prefix}saldo
-▢ • ${prefix}set-proxy
-▢ • ${prefix}unmute
-▢ • ${prefix}welcome (1/0)
-▢ • ${prefix}live-alert (on/off)
-▢
-╰━━─「⭐」─━━
-
 ╭━━⪩ PRINCIPAL ⪨━━
 ▢
-▢ • ${prefix}attp
-▢ • ${prefix}brat
-▢ • ${prefix}bratvid
-▢ • ${prefix}cep
-▢ • ${prefix}exemplos-de-mensagens
-▢ • ${prefix}fake-chat
-▢ • ${prefix}gerar-link
-▢ • ${prefix}info
-▢ • ${prefix}meu-lid
-▢ • ${prefix}perfil
-▢ • ${prefix}ping
-▢ • ${prefix}raw-message
-▢ • ${prefix}rename
-▢ • ${prefix}removebg
-▢ • ${prefix}sticker
-▢ • ${prefix}suporte
-▢ • ${prefix}to-gif
-▢ • ${prefix}to-image
-▢ • ${prefix}to-mp3
-▢ • ${prefix}ttp
-▢ • ${prefix}yt-search
+✨ • ${prefix}attp
+🎭 • ${prefix}brat
+🎬 • ${prefix}bratvid
+📍 • ${prefix}cep
+💬 • ${prefix}fake-chat
+🔗 • ${prefix}gerar-link
+ℹ️ • ${prefix}info
+👤 • ${prefix}meu-lid
+👤 • ${prefix}perfil
+⚡ • ${prefix}ping
+📄 • ${prefix}raw-message
+✏️ • ${prefix}rename
+🖼️ • ${prefix}removebg
+🏷️ • ${prefix}sticker
+📞 • ${prefix}suporte
+🎬 • ${prefix}to-gif
+🖼️ • ${prefix}to-image
+🎵 • ${prefix}to-mp3
+✨ • ${prefix}ttp
+🔍 • ${prefix}yt-search
 ▢
 ╰━━─「🚀」─━━
-
-╭━━⪩ DOWNLOADS ⪨━━
-▢
-▢ • ${prefix}facebook
-▢ • ${prefix}instagram
-▢ • ${prefix}play-audio
-▢ • ${prefix}play-video
-▢ • ${prefix}pinterest
-▢ • ${prefix}tik-tok
-▢ • ${prefix}tik-tok-audio
-▢ • ${prefix}xtwitter
-▢ • ${prefix}yt-mp3
-▢ • ${prefix}yt-mp4
-▢
-╰━━─「🎶」─━━
 
 ╭━━⪩ BRINCADEIRAS ⪨━━
 ▢
-▢ • ${prefix}abracar
-▢ • ${prefix}beijar
-▢ • ${prefix}dado
-▢ • ${prefix}jantar
-▢ • ${prefix}lutar
-▢ • ${prefix}matar
-▢ • ${prefix}socar
+🤗 • ${prefix}abracar
+💋 • ${prefix}beijar
+🎲 • ${prefix}dado
+🍽️ • ${prefix}jantar
+👊 • ${prefix}lutar
+💀 • ${prefix}matar
+👊 • ${prefix}socar
 ▢
-╰━━─「🎡」─━━
+╰━━─「🎡」─━━`;
+}
 
-╭━━⪩ IA ⪨━━
-▢
-▢ • ${prefix}deepseek
-▢ • ${prefix}flux
-▢ • ${prefix}gemini
-▢ • ${prefix}gpt-5-mini
-▢ • ${prefix}ia-sticker
-▢ • ${prefix}transcrever
-▢ • ${prefix}tts
-▢
-╰━━─「🚀」─━━
+export function menuDono(groupJid) {
+  const prefix = getPrefix(groupJid);
 
-╭━━⪩ CANVAS ⪨━━
+  return `╭━━⪩ MENU DONO ⪨━━
 ▢
-▢ • ${prefix}blur
-▢ • ${prefix}bolsonaro
-▢ • ${prefix}cadeia
-▢ • ${prefix}contraste
-▢ • ${prefix}espelhar
-▢ • ${prefix}gray
-▢ • ${prefix}inverter
-▢ • ${prefix}pixel
-▢ • ${prefix}rip
+💻 • ${prefix}exec
+🆔 • ${prefix}get-group-id
+🔴 • ${prefix}off
+🟢 • ${prefix}on
+🖼️ • ${prefix}set-menu-image
+⚙️ • ${prefix}set-prefix
+🔑 • ${prefix}set-spider-api-token
+📝 • ${prefix}status
 ▢
-╰━━─「❇」─━━`;
+╰━━─「👑」─━━`;
+}
+
+export function menuAdmin(groupJid) {
+  const prefix = getPrefix(groupJid);
+
+  return `╭━━⪩ MENU ADMIN ⪨━━
+▢
+🔓 • ${prefix}abrir
+➕ • ${prefix}add-auto-responder
+⏰ • ${prefix}agendar-mensagem
+🚫 • ${prefix}anti-audio (1/0)
+🚫 • ${prefix}anti-call (1/0)
+🚫 • ${prefix}anti-document (1/0)
+🚫 • ${prefix}anti-event (1/0)
+🚫 • ${prefix}anti-image (1/0)
+🚫 • ${prefix}anti-link (1/0)
+🚫 • ${prefix}anti-lottie-sticker (1/0)
+🚫 • ${prefix}anti-payment (1/0)
+🚫 • ${prefix}anti-product (1/0)
+🚫 • ${prefix}anti-sticker (1/0)
+🚫 • ${prefix}anti-status-grupo (1/0)
+🚫 • ${prefix}anti-video (1/0)
+🤖 • ${prefix}auto-responder (1/0)
+🏷️ • ${prefix}auto-sticker (1/0)
+🔨 • ${prefix}ban
+🗑️ • ${prefix}delete
+❌ • ${prefix}delete-auto-responder
+🚪 • ${prefix}exit (1/0)
+🔒 • ${prefix}fechar
+👥 • ${prefix}hidetag
+🧹 • ${prefix}limpar-chat
+🔗 • ${prefix}link-grupo
+📋 • ${prefix}list-auto-responder
+🔇 • ${prefix}mute
+👤 • ${prefix}only-admin (1/0)
+⬆️ • ${prefix}promover
+⬇️ • ${prefix}rebaixar
+👁️ • ${prefix}revelar
+💰 • ${prefix}saldo
+🌐 • ${prefix}set-proxy
+🔔 • ${prefix}unmute
+👋 • ${prefix}welcome (1/0)
+📺 • ${prefix}live-alert (on/off)
+▢
+╰━━─「⭐」─━━`;
+}
+
+export function menuDownloads(groupJid) {
+  const prefix = getPrefix(groupJid);
+
+  return `╭━━⪩ MENU DOWNLOADS ⪨━━
+▢
+📘 • ${prefix}facebook
+📷 • ${prefix}instagram
+🎵 • ${prefix}play-audio
+🎬 • ${prefix}play-video
+📌 • ${prefix}pinterest
+🎵 • ${prefix}tik-tok
+🎵 • ${prefix}tik-tok-audio
+🐦 • ${prefix}xtwitter
+🎵 • ${prefix}yt-mp3
+🎬 • ${prefix}yt-mp4
+▢
+╰━━─「📥」─━━`;
+}
+
+export function menuIA(groupJid) {
+  const prefix = getPrefix(groupJid);
+
+  return `╭━━⪩ MENU IA ⪨━━
+▢
+🧠 • ${prefix}deepseek
+🎨 • ${prefix}flux
+🤖 • ${prefix}gemini
+🧠 • ${prefix}gpt-5-mini
+🏷️ • ${prefix}ia-sticker
+📝 • ${prefix}transcrever
+🔊 • ${prefix}tts
+▢
+╰━━─「🤖」─━━`;
+}
+
+export function menuCanvas(groupJid) {
+  const prefix = getPrefix(groupJid);
+
+  return `╭━━⪩ MENU CANVAS ⪨━━
+▢
+🌫️ • ${prefix}blur
+🇧🇷 • ${prefix}bolsonaro
+⛓️ • ${prefix}cadeia
+🌗 • ${prefix}contraste
+🪞 • ${prefix}espelhar
+⬛ • ${prefix}gray
+🔄 • ${prefix}inverter
+🎮 • ${prefix}pixel
+⚰️ • ${prefix}rip
+▢
+╰━━─「🎨」─━━`;
 }
