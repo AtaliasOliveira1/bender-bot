@@ -53,6 +53,11 @@ export const LINKER_BASE_URL = "https://linker.devgui.dev/api";
 // Defina como false para desabilitar a verificação (útil para produção)
 export const CHECK_UPDATES_ON_STARTUP = true;
 
+// Rotação automática de status do perfil
+// Define em minutos o intervalo de atualização do status (60 = 1 hora)
+// Defina como 0 para desabilitar
+export const STATUS_ROTATION_INTERVAL_MINUTES = 60;
+
 // Obtenha sua chave em: https://linker.devgui.dev.
 // Se não configurar esta chave, o bot usa automaticamente o token da Spider X API.
 export const LINKER_API_KEY = "seu_token_aqui";

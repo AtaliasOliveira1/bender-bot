@@ -75,6 +75,8 @@ import { connect } from "./connection.js";
 import { load } from "./loader.js";
 import { badMacHandler } from "./utils/badMacHandler.js";
 import { checkUpdatesOnStartup } from "./utils/updateChecker.js";
+import { setOnlineSince, startStatusRotation } from "./utils/statusRotator.js";
+import { STATUS_ROTATION_INTERVAL_MINUTES } from "./config.js";
 import {
   bannerLog,
   errorLog,
@@ -127,6 +129,14 @@ async function startBot() {
     }
 
     const socket = await connect();
+
+    // Definir data/hora em que o bot ficou online
+    setOnlineSince();
+
+    // Iniciar rotação automática de status se habilitado
+    if (STATUS_ROTATION_INTERVAL_MINUTES > 0) {
+      startStatusRotation(socket, STATUS_ROTATION_INTERVAL_MINUTES);
+    }
 
     load(socket);
 
