@@ -173,10 +173,7 @@ export async function dynamicCommand(paramsHandler, startProcess) {
   }
 
   if (!hasTypeAndCommand({ type, command })) {
-    await sendWarningReply(
-      `Comando não encontrado! Use ${groupPrefix}menu para ver os comandos disponíveis!`
-    );
-
+    await sendReact("⁉");
     return;
   }
 
