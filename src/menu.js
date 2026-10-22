@@ -46,7 +46,9 @@ export function menuMessage(groupJid) {
 ✏️ • ${prefix}rename
 🖼️ • ${prefix}removebg
 🏷️ • ${prefix}sticker
-📞 • ${prefix}suporte
+🎭 • ${prefix}figurinhas
+� • ${prefix}palavrasfig
+�📞 • ${prefix}suporte
 🎬 • ${prefix}to-gif
 🖼️ • ${prefix}to-image
 🎵 • ${prefix}to-mp3
@@ -81,6 +83,7 @@ export function menuDono(groupJid) {
 ⚙️ • ${prefix}set-prefix
 🔑 • ${prefix}set-spider-api-token
 📝 • ${prefix}status
+🎭 • ${prefix}autofig
 ▢
 ╰━━─「👑」─━━`;
 }
@@ -107,6 +110,7 @@ export function menuAdmin(groupJid) {
 🚫 • ${prefix}anti-video (1/0)
 🤖 • ${prefix}auto-responder (1/0)
 🏷️ • ${prefix}auto-sticker (1/0)
+🎭 • ${prefix}autofiggrupo (on/off)
 🔨 • ${prefix}ban
 🗑️ • ${prefix}delete
 ❌ • ${prefix}delete-auto-responder

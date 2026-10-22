@@ -58,6 +58,11 @@ export const CHECK_UPDATES_ON_STARTUP = true;
 // Defina como 0 para desabilitar
 export const STATUS_ROTATION_INTERVAL_MINUTES = 60;
 
+// Auto-resposta de figurinhas
+// Detecta palavras-chave e envia figurinhas automaticamente
+// Defina como false para desabilitar
+export const AUTO_STICKER_RESPONSE_ENABLED = true;
+
 // Obtenha sua chave em: https://linker.devgui.dev.
 // Se não configurar esta chave, o bot usa automaticamente o token da Spider X API.
 export const LINKER_API_KEY = "seu_token_aqui";

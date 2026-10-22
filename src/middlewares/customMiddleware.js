@@ -13,6 +13,8 @@
  *
  * @author Dev Gui
  */
+import { processAutoStickerResponse } from "../utils/autoStickerResponse.js";
+
 export async function customMiddleware({
   socket,
   webMessage,
@@ -21,6 +23,14 @@ export async function customMiddleware({
   action,
   data,
 }) {
+  // Auto-resposta com figurinhas baseada em palavras-chave
+  if (type === "message" && commonFunctions) {
+    const { fullMessage, remoteJid } = commonFunctions;
+
+    // Processar auto-resposta de figurinhas
+    await processAutoStickerResponse(socket, remoteJid, fullMessage);
+  }
+
   // Adicione sua lógica customizada aqui
   // Este arquivo é SEU - modifique à vontade!
 }
