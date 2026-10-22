@@ -16,7 +16,7 @@ export const BOT_NAME = "Bender Bot";
 // LID do bot (no caso, o que você rodará o bot).
 // Para obter o LID do bot, use o comando <prefixo>lid respondendo em cima de uma mensagem do número do bot
 // Troque o <prefixo> pelo prefixo do bot (ex: /lid).
-export const BOT_LID = "237778482786517@lid";
+export const BOT_LID = "256418926096584@lid";
 
 // LID do dono do bot (no caso, o seu!).
 // Para obter o LID do dono do bot, use o comando <prefixo>meu-lid
@@ -66,11 +66,11 @@ export const ONLY_GROUP_ID = "";
 // Configuração para modo de desenvolvimento
 // mude o valor para ( true ) sem os parênteses
 // caso queira ver os logs de mensagens recebidas
-export const DEVELOPER_MODE = true;
+export const DEVELOPER_MODE = false;
 
 // Chave da OpenAI para o comando de suporte
 export const OPENAI_API_KEY = "";
 
 // Configuração do servidor Express para webhooks
 export const WEBHOOK_PORT = 3555;
-export const WEBHOOK_ENABLED = true;
+export const WEBHOOK_ENABLED = false;
