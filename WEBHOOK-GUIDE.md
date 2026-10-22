@@ -17,7 +17,7 @@ O Bender Bot agora possui um servidor webhook integrado que permite receber aler
 
 ```javascript
 // Configuração do servidor Express para webhooks
-export const WEBHOOK_PORT = 3000;
+export const WEBHOOK_PORT = 3555;
 export const WEBHOOK_ENABLED = true;
 ```
 
