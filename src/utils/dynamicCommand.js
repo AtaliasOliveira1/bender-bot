@@ -97,6 +97,10 @@ export async function dynamicCommand(paramsHandler, startProcess) {
       !verifyPrefix(prefix, remoteJid) ||
       !hasTypeAndCommand({ type, command })
     ) {
+      if (verifyPrefix(prefix, remoteJid) && !hasTypeAndCommand({ type, command })) {
+        await sendReact("⁉");
+      }
+
       if (isActiveAutoResponderGroup(remoteJid)) {
         const response = getAutoResponderResponse(fullMessage);
 
@@ -173,7 +177,6 @@ export async function dynamicCommand(paramsHandler, startProcess) {
   }
 
   if (!hasTypeAndCommand({ type, command })) {
-    await sendReact("⁉");
     return;
   }
 
