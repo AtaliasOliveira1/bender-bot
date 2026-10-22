@@ -74,6 +74,7 @@
 import { connect } from "./connection.js";
 import { load } from "./loader.js";
 import { badMacHandler } from "./utils/badMacHandler.js";
+import { checkUpdatesOnStartup } from "./utils/updateChecker.js";
 import {
   bannerLog,
   errorLog,
@@ -114,6 +115,9 @@ async function startBot() {
 
     bannerLog();
     infoLog("Iniciando meus componentes internos...");
+
+    // Verificar atualizações do repositório
+    await checkUpdatesOnStartup();
 
     const stats = badMacHandler.getStats();
     if (stats.errorCount > 0) {

@@ -49,6 +49,10 @@ export const SPIDER_API_TOKEN = "seu_token_aqui";
 // Com token da Spider X API, os links duram 1 dia.
 export const LINKER_BASE_URL = "https://linker.devgui.dev/api";
 
+// Verificar atualizações do repositório ao iniciar o bot
+// Defina como false para desabilitar a verificação (útil para produção)
+export const CHECK_UPDATES_ON_STARTUP = true;
+
 // Obtenha sua chave em: https://linker.devgui.dev.
 // Se não configurar esta chave, o bot usa automaticamente o token da Spider X API.
 export const LINKER_API_KEY = "seu_token_aqui";
