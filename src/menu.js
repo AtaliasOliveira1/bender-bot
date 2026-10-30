@@ -46,6 +46,7 @@ export function menuMessage(groupJid) {
 ✏️ • ${prefix}rename
 🖼️ • ${prefix}removebg
 🏷️ • ${prefix}sticker
+👤 • ${prefix}mudar-autor
 🎭 • ${prefix}figurinhas
 � • ${prefix}palavrasfig
 �📞 • ${prefix}suporte
