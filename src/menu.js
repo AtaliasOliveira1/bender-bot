@@ -67,8 +67,8 @@ export function menuMessage(groupJid) {
 🍽️ • ${prefix}jantar
 👊 • ${prefix}lutar
 💀 • ${prefix}matar
-� • ${prefix}roleta-russa
-�👊 • ${prefix}socar
+🔫 • ${prefix}roleta
+👊 • ${prefix}socar
 ▢
 ╰━━─「🎡」─━━`;
 }
@@ -124,6 +124,7 @@ export function menuAdmin(groupJid) {
 🔗 • ${prefix}link-grupo
 📋 • ${prefix}list-auto-responder
 🔇 • ${prefix}mute
+⏰ • ${prefix}mute-temp
 👤 • ${prefix}only-admin (1/0)
 ⬆️ • ${prefix}promover
 ⬇️ • ${prefix}rebaixar

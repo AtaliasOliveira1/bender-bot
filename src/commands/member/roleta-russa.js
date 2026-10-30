@@ -7,10 +7,10 @@ import {
 } from "../../utils/database.js";
 
 export default {
-  name: "roleta-russa",
+  name: "roleta",
   description: "Escolhe aleatoriamente uma pessoa do grupo para silenciar por 5 minutos",
-  commands: ["roleta-russa", "roulette", "roleta"],
-  usage: `${PREFIX}roleta-russa`,
+  commands: ["roleta", "roleta-russa", "roulette"],
+  usage: `${PREFIX}roleta`,
   handle: async ({
     remoteJid,
     socket,
