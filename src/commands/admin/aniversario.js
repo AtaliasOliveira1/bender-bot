@@ -150,8 +150,10 @@ export default {
         throw error;
       }
 
+      console.error("Erro no comando aniversario:", error);
+
       await sendErrorReply(
-        "Falha ao configurar aniversários. Verifique se tenho permissão de administrador."
+        `Falha ao configurar aniversários: ${error.message}`
       );
     }
   },

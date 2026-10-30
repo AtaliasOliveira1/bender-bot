@@ -73,8 +73,10 @@ export default {
         throw error;
       }
 
+      console.error("Erro no comando dia-semana:", error);
+
       await sendErrorReply(
-        "Falha ao configurar dia da semana. Verifique se tenho permissão de administrador."
+        `Falha ao configurar dia da semana: ${error.message}`
       );
     }
   },
