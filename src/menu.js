@@ -54,6 +54,7 @@ export function menuMessage(groupJid) {
 🎵 • ${prefix}to-mp3
 ✨ • ${prefix}ttp
 🔍 • ${prefix}yt-search
+🎂 • ${prefix}aniversario (on/off/add/list/remove)
 ▢
 ╰━━─「🚀」─━━
 
@@ -132,7 +133,6 @@ export function menuAdmin(groupJid) {
 👋 • ${prefix}welcome (1/0)
 📺 • ${prefix}live-alert (on/off)
 📅 • ${prefix}dia-semana (on/off)
-🎂 • ${prefix}aniversario (on/off/add/list/remove)
 ▢
 ╰━━─「⭐」─━━`;
 }
