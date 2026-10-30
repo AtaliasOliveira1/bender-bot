@@ -65,7 +65,8 @@ export function menuMessage(groupJid) {
 🍽️ • ${prefix}jantar
 👊 • ${prefix}lutar
 💀 • ${prefix}matar
-👊 • ${prefix}socar
+� • ${prefix}roleta-russa
+�👊 • ${prefix}socar
 ▢
 ╰━━─「🎡」─━━`;
 }
@@ -130,6 +131,8 @@ export function menuAdmin(groupJid) {
 🔔 • ${prefix}unmute
 👋 • ${prefix}welcome (1/0)
 📺 • ${prefix}live-alert (on/off)
+📅 • ${prefix}dia-semana (on/off)
+🎂 • ${prefix}aniversario (on/off/add/list/remove)
 ▢
 ╰━━─「⭐」─━━`;
 }

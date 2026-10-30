@@ -7,6 +7,10 @@
 import { PREFIX } from "../../config.js";
 import { InvalidParameterError } from "../../errors/index.js";
 import { createSticker } from "../../services/sticker.js";
+import {
+  getStickerAuthor,
+  addPendingStickerAuthorRegistration,
+} from "../../utils/database.js";
 
 export default {
   name: "sticker",
@@ -17,7 +21,16 @@ export default {
    * @param {CommandHandleProps} props
    */
   handle: async (paramsHandler) => {
-    const { isImage, isVideo, sendWaitReact, sendSuccessReact } = paramsHandler;
+    const {
+      isImage,
+      isVideo,
+      sendWaitReact,
+      sendSuccessReact,
+      sendReply,
+      userLid,
+      remoteJid,
+      webMessage,
+    } = paramsHandler;
 
     if (!isImage && !isVideo) {
       throw new InvalidParameterError(
@@ -25,8 +38,23 @@ export default {
       );
     }
 
+    const userId = userLid.replace(/:[0-9][0-9]|:[0-9]/g, "");
+    const existingAuthor = getStickerAuthor(userId);
+
+    if (!existingAuthor) {
+      await sendReply(
+        `Opa! É sua primeira vez criando figurinha por aqui. Como você quer assinar suas figurinhas? Responda com 1 para usar seu nome do WhatsApp ou digite o nome/apelido que quer usar como autor:`
+      );
+
+      addPendingStickerAuthorRegistration(userId, remoteJid);
+
+      throw new InvalidParameterError(
+        `Aguardando seu registro de autor. Por favor, responda à mensagem acima.`
+      );
+    }
+
     await sendWaitReact();
-    await createSticker(paramsHandler);
+    await createSticker(paramsHandler, existingAuthor);
     await sendSuccessReact();
   },
 };

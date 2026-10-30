@@ -175,7 +175,7 @@ export async function processAnimatedGifToSticker(inputPath, metadata) {
   });
 }
 
-export async function createSticker(paramsHandler) {
+export async function createSticker(paramsHandler, authorName = null) {
   const {
     isImage,
     isVideo,
@@ -191,7 +191,7 @@ export async function createSticker(paramsHandler) {
   const groupName = isGroup ? await getGroupName() : null;
 
   const metadata = {
-    username: getUserName(webMessage, userLid),
+    username: authorName || getUserName(webMessage, userLid),
     botName: `${BOT_EMOJI} ${BOT_NAME}`,
     groupName: groupName,
     creationDate: Date.now(),

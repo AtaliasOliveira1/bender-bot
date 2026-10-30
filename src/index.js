@@ -76,6 +76,7 @@ import { load } from "./loader.js";
 import { badMacHandler } from "./utils/badMacHandler.js";
 import { checkUpdatesOnStartup } from "./utils/updateChecker.js";
 import { setOnlineSince, startStatusRotation } from "./utils/statusRotator.js";
+import { updateGroupNames } from "./utils/groupNameUpdater.js";
 import { STATUS_ROTATION_INTERVAL_MINUTES } from "./config.js";
 import {
   bannerLog,
@@ -148,6 +149,10 @@ async function startBot() {
         );
       }
     }, 300_000);
+
+    setInterval(async () => {
+      await updateGroupNames(socket);
+    }, 600_000);
   } catch (error) {
     if (badMacHandler.handleError(error, "bot-startup")) {
       warningLog("Erro Bad MAC durante inicialização, tentando novamente...");

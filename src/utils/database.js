@@ -28,6 +28,13 @@ const MUTE_FILE = "muted";
 const ONLY_ADMINS_FILE = "only-admins";
 const PREFIX_GROUPS_FILE = "prefix-groups";
 const RESTRICTED_MESSAGES_FILE = "restricted-messages";
+const STICKER_AUTHORS_FILE = "sticker-authors";
+const STICKER_AUTHORS_PENDING_FILE = "sticker-authors-pending";
+const WEEKDAY_GROUPS_FILE = "weekday-groups";
+const BIRTHDAYS_FILE = "birthdays";
+const GROUP_ORIGINAL_NAMES_FILE = "group-original-names";
+const ROULETTE_LAST_USED_FILE = "roulette-last-used";
+const ROULETTE_MUTED_FILE = "roulette-muted";
 const WELCOME_GROUPS_FILE = "welcome-groups";
 
 function createIfNotExists(fullPath, formatIfNotExists = []) {
@@ -579,4 +586,296 @@ export function isActiveLiveAlertGroup(groupId) {
   const liveAlertGroups = readJSON(filename, []);
 
   return liveAlertGroups.includes(groupId);
+}
+
+export function getStickerAuthor(userId) {
+  const filename = STICKER_AUTHORS_FILE;
+  const authors = readJSON(filename, {});
+
+  return authors[userId] || null;
+}
+
+export function setStickerAuthor(userId, authorName) {
+  const filename = STICKER_AUTHORS_FILE;
+  const authors = readJSON(filename, {});
+
+  authors[userId] = authorName;
+
+  writeJSON(filename, authors, {});
+}
+
+export function addPendingStickerAuthorRegistration(userId, remoteJid) {
+  const filename = STICKER_AUTHORS_PENDING_FILE;
+  const pending = readJSON(filename, {});
+
+  pending[userId] = {
+    remoteJid,
+    timestamp: Date.now(),
+  };
+
+  writeJSON(filename, pending, {});
+}
+
+export function getPendingStickerAuthorRegistration(userId) {
+  const filename = STICKER_AUTHORS_PENDING_FILE;
+  const pending = readJSON(filename, {});
+
+  return pending[userId] || null;
+}
+
+export function removePendingStickerAuthorRegistration(userId) {
+  const filename = STICKER_AUTHORS_PENDING_FILE;
+  const pending = readJSON(filename, {});
+
+  if (!pending[userId]) {
+    return false;
+  }
+
+  delete pending[userId];
+
+  writeJSON(filename, pending, {});
+
+  return true;
+}
+
+export function activateWeekdayGroup(groupId) {
+  const filename = WEEKDAY_GROUPS_FILE;
+  const weekdayGroups = readJSON(filename, []);
+
+  if (!weekdayGroups.includes(groupId)) {
+    weekdayGroups.push(groupId);
+  }
+
+  writeJSON(filename, weekdayGroups);
+}
+
+export function deactivateWeekdayGroup(groupId) {
+  const filename = WEEKDAY_GROUPS_FILE;
+  const weekdayGroups = readJSON(filename, []);
+
+  const index = weekdayGroups.indexOf(groupId);
+
+  if (index === -1) {
+    return;
+  }
+
+  weekdayGroups.splice(index, 1);
+
+  writeJSON(filename, weekdayGroups);
+}
+
+export function isActiveWeekdayGroup(groupId) {
+  const filename = WEEKDAY_GROUPS_FILE;
+  const weekdayGroups = readJSON(filename, []);
+
+  return weekdayGroups.includes(groupId);
+}
+
+export function setGroupOriginalName(groupId, originalName) {
+  const filename = GROUP_ORIGINAL_NAMES_FILE;
+  const originalNames = readJSON(filename, {});
+
+  originalNames[groupId] = originalName;
+
+  writeJSON(filename, originalNames, {});
+}
+
+export function getGroupOriginalName(groupId) {
+  const filename = GROUP_ORIGINAL_NAMES_FILE;
+  const originalNames = readJSON(filename, {});
+
+  return originalNames[groupId] || null;
+}
+
+export function removeGroupOriginalName(groupId) {
+  const filename = GROUP_ORIGINAL_NAMES_FILE;
+  const originalNames = readJSON(filename, {});
+
+  if (!originalNames[groupId]) {
+    return false;
+  }
+
+  delete originalNames[groupId];
+
+  writeJSON(filename, originalNames, {});
+
+  return true;
+}
+
+export function addBirthday(groupId, memberId, name, day, month) {
+  const filename = BIRTHDAYS_FILE;
+  const birthdays = readJSON(filename, {});
+
+  if (!birthdays[groupId]) {
+    birthdays[groupId] = [];
+  }
+
+  birthdays[groupId].push({
+    memberId,
+    name,
+    day,
+    month,
+  });
+
+  writeJSON(filename, birthdays, {});
+}
+
+export function removeBirthday(groupId, memberId) {
+  const filename = BIRTHDAYS_FILE;
+  const birthdays = readJSON(filename, {});
+
+  if (!birthdays[groupId]) {
+    return false;
+  }
+
+  const index = birthdays[groupId].findIndex((b) => b.memberId === memberId);
+
+  if (index === -1) {
+    return false;
+  }
+
+  birthdays[groupId].splice(index, 1);
+
+  if (birthdays[groupId].length === 0) {
+    delete birthdays[groupId];
+  }
+
+  writeJSON(filename, birthdays, {});
+
+  return true;
+}
+
+export function getBirthdays(groupId) {
+  const filename = BIRTHDAYS_FILE;
+  const birthdays = readJSON(filename, {});
+
+  return birthdays[groupId] || [];
+}
+
+export function getTodayBirthdays(groupId) {
+  const birthdays = getBirthdays(groupId);
+  const today = new Date();
+  const currentDay = today.getDate();
+  const currentMonth = today.getMonth() + 1;
+
+  return birthdays.filter((b) => b.day === currentDay && b.month === currentMonth);
+}
+
+export function activateBirthdayGroup(groupId) {
+  const filename = "birthday-groups";
+  const birthdayGroups = readJSON(filename, []);
+
+  if (!birthdayGroups.includes(groupId)) {
+    birthdayGroups.push(groupId);
+  }
+
+  writeJSON(filename, birthdayGroups);
+}
+
+export function deactivateBirthdayGroup(groupId) {
+  const filename = "birthday-groups";
+  const birthdayGroups = readJSON(filename, []);
+
+  const index = birthdayGroups.indexOf(groupId);
+
+  if (index === -1) {
+    return;
+  }
+
+  birthdayGroups.splice(index, 1);
+
+  writeJSON(filename, birthdayGroups);
+}
+
+export function isActiveBirthdayGroup(groupId) {
+  const filename = "birthday-groups";
+  const birthdayGroups = readJSON(filename, []);
+
+  return birthdayGroups.includes(groupId);
+}
+
+export function getRouletteLastUsed(userId) {
+  const filename = ROULETTE_LAST_USED_FILE;
+  const lastUsed = readJSON(filename, {});
+
+  return lastUsed[userId] || null;
+}
+
+export function setRouletteLastUsed(userId) {
+  const filename = ROULETTE_LAST_USED_FILE;
+  const lastUsed = readJSON(filename, {});
+
+  lastUsed[userId] = Date.now();
+
+  writeJSON(filename, lastUsed, {});
+}
+
+export function canUseRoulette(userId) {
+  const lastUsed = getRouletteLastUsed(userId);
+
+  if (!lastUsed) {
+    return true;
+  }
+
+  const oneDayInMs = 24 * 60 * 60 * 1000;
+  const timeSinceLastUse = Date.now() - lastUsed;
+
+  return timeSinceLastUse >= oneDayInMs;
+}
+
+export function addRouletteMuted(groupId, memberId, expiresAt) {
+  const filename = ROULETTE_MUTED_FILE;
+  const muted = readJSON(filename, {});
+
+  if (!muted[groupId]) {
+    muted[groupId] = {};
+  }
+
+  muted[groupId][memberId] = expiresAt;
+
+  writeJSON(filename, muted, {});
+}
+
+export function getRouletteMuted(groupId, memberId) {
+  const filename = ROULETTE_MUTED_FILE;
+  const muted = readJSON(filename, {});
+
+  if (!muted[groupId] || !muted[groupId][memberId]) {
+    return null;
+  }
+
+  const expiresAt = muted[groupId][memberId];
+
+  if (Date.now() > expiresAt) {
+    delete muted[groupId][memberId];
+
+    if (Object.keys(muted[groupId]).length === 0) {
+      delete muted[groupId];
+    }
+
+    writeJSON(filename, muted, {});
+
+    return null;
+  }
+
+  return expiresAt;
+}
+
+export function removeRouletteMuted(groupId, memberId) {
+  const filename = ROULETTE_MUTED_FILE;
+  const muted = readJSON(filename, {});
+
+  if (!muted[groupId] || !muted[groupId][memberId]) {
+    return false;
+  }
+
+  delete muted[groupId][memberId];
+
+  if (Object.keys(muted[groupId]).length === 0) {
+    delete muted[groupId];
+  }
+
+  writeJSON(filename, muted, {});
+
+  return true;
 }
