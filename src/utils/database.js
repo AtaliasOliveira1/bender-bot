@@ -35,6 +35,7 @@ const BIRTHDAYS_FILE = "birthdays";
 const GROUP_ORIGINAL_NAMES_FILE = "group-original-names";
 const ROULETTE_LAST_USED_FILE = "roulette-last-used";
 const ROULETTE_MUTED_FILE = "roulette-muted";
+const GROUP_NAME_LAST_UPDATE_FILE = "group-name-last-update";
 const WELCOME_GROUPS_FILE = "welcome-groups";
 
 function createIfNotExists(fullPath, formatIfNotExists = []) {
@@ -878,4 +879,36 @@ export function removeRouletteMuted(groupId, memberId) {
   writeJSON(filename, muted, {});
 
   return true;
+}
+
+export function getGroupNameLastUpdateDate() {
+  const filename = GROUP_NAME_LAST_UPDATE_FILE;
+  const lastUpdate = readJSON(filename, {});
+
+  return lastUpdate.date || null;
+}
+
+export function setGroupNameLastUpdateDate() {
+  const filename = GROUP_NAME_LAST_UPDATE_FILE;
+  const lastUpdate = readJSON(filename, {});
+
+  const today = new Date();
+  const todayStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+
+  lastUpdate.date = todayStr;
+
+  writeJSON(filename, lastUpdate, {});
+}
+
+export function hasGroupNameUpdatedToday() {
+  const lastUpdateDate = getGroupNameLastUpdateDate();
+
+  if (!lastUpdateDate) {
+    return false;
+  }
+
+  const today = new Date();
+  const todayStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+
+  return lastUpdateDate === todayStr;
 }

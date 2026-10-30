@@ -152,7 +152,7 @@ async function startBot() {
 
     setInterval(async () => {
       await updateGroupNames(socket);
-    }, 600_000);
+    }, 3_600_000); // 1 hora
   } catch (error) {
     if (badMacHandler.handleError(error, "bot-startup")) {
       warningLog("Erro Bad MAC durante inicialização, tentando novamente...");

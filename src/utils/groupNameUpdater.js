@@ -8,12 +8,22 @@ import {
   getGroupOriginalName,
   isActiveBirthdayGroup,
   getTodayBirthdays,
+  hasGroupNameUpdatedToday,
+  setGroupNameLastUpdateDate,
 } from "./database.js";
 
 const WEEKDAYS = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
 
 export async function updateGroupNames(socket) {
   try {
+    // Só atualiza se o dia mudou (após 00:00)
+    if (hasGroupNameUpdatedToday()) {
+      console.log("Nomes de grupos já atualizados hoje. Pulando...");
+      return;
+    }
+
+    console.log("Atualizando nomes de grupos (novo dia)...");
+
     const groups = await socket.groupFetchAllParticipating();
     const groupIds = Object.keys(groups);
 
@@ -31,6 +41,7 @@ export async function updateGroupNames(socket) {
 
           if (currentName !== newName) {
             await socket.groupUpdateSubject(groupId, newName);
+            console.log(`Nome do grupo ${groupId} atualizado para: ${newName}`);
           }
         }
 
@@ -45,11 +56,13 @@ export async function updateGroupNames(socket) {
 
             if (currentName !== newName) {
               await socket.groupUpdateSubject(groupId, newName);
+              console.log(`Nome do grupo ${groupId} atualizado para parabéns: ${newName}`);
             }
           } else {
             // Se não tem aniversário hoje, volta ao nome original
             if (currentName !== originalName) {
               await socket.groupUpdateSubject(groupId, originalName);
+              console.log(`Nome do grupo ${groupId} restaurado para: ${originalName}`);
             }
           }
         }
@@ -57,6 +70,10 @@ export async function updateGroupNames(socket) {
         console.error(`Erro ao atualizar nome do grupo ${groupId}:`, error.message);
       }
     }
+
+    // Marca que já atualizou hoje
+    setGroupNameLastUpdateDate();
+    console.log("Atualização de nomes de grupos concluída.");
   } catch (error) {
     console.error("Erro ao buscar grupos:", error.message);
   }
