@@ -9,6 +9,7 @@ import {
   getBirthdays,
   setGroupOriginalName,
   getGroupOriginalName,
+  removeGroupOriginalName,
 } from "../../utils/database.js";
 
 export default {
