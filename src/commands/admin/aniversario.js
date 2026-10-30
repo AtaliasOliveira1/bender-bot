@@ -33,11 +33,20 @@ export default {
       throw new WarningError("Esse comando só pode ser usado em grupos.");
     }
 
-    const action = args[0]?.toLowerCase();
+    const action = args[0]?.toLowerCase().trim();
+
+    console.log("Action:", action);
+    console.log("Args:", args);
+    console.log("FullArgs:", fullArgs);
 
     if (!action) {
       throw new InvalidParameterError(
-        `Uso: ${PREFIX}aniversario on/off/add/list/remove`
+        `Uso incorreto! Exemplos:\n` +
+        `${PREFIX}aniversario on - Ativar aniversários\n` +
+        `${PREFIX}aniversario off - Desativar aniversários\n` +
+        `${PREFIX}aniversario add João 15 08 - Adicionar aniversário\n` +
+        `${PREFIX}aniversario list - Listar aniversários\n` +
+        `${PREFIX}aniversario remove 1 - Remover aniversário`
       );
     }
 
@@ -137,8 +146,9 @@ export default {
           `Aniversário de ${birthday.name} removido.`
         );
       } else {
+        console.log("Ação não reconhecida:", action);
         throw new InvalidParameterError(
-          `Ação inválida. Use: on/off/add/list/remove`
+          `Ação inválida: "${action}". Use: on/off/add/list/remove`
         );
       }
     } catch (error) {
