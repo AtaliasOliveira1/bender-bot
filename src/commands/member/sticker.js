@@ -48,9 +48,7 @@ export default {
 
       addPendingStickerAuthorRegistration(userId, remoteJid);
 
-      throw new InvalidParameterError(
-        `Aguardando seu registro de autor. Por favor, responda à mensagem acima.`
-      );
+      return;
     }
 
     await sendWaitReact();
